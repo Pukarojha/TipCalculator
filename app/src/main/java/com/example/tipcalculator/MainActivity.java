@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -53,6 +54,43 @@ ActivityMainBinding binding;
         percentDown.setOnClickListener(this);
         percentUp.setOnClickListener(this);
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("billAmountString", billAmountString);
+        outState.putFloat("tipPercent", tipPercent);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null){
+            billAmountString = savedInstanceState.getString(billAmountString, "");
+            tipPercent = savedInstanceState.getFloat(tipPercent, 0.15f);
+        }
+    }
+    //    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        outState.putString("billAmountString", billAmountString);
+//        outState.putFloat("tipPercent", tipPercent);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        if(savedInstanceState != null){
+//            billAmountString= savedInstanceState.getString("billAmountString", "");
+//            tipPercent = savedInstanceState.getFloat("tipPercent", 0.15f);
+//
+//            billAmount.setText(billAmountString);
+//            calculateAndDisplay();
+//        }
+//    }
+
 
     public  void calculateAndDisplay(){
         billAmountString = billAmount.getText().toString().trim();
@@ -104,6 +142,7 @@ ActivityMainBinding binding;
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        calculateAndDisplay();
         return false;
     }
 }

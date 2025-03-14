@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TipCalculator</string>
+    <string name="tvPercent">15%</string>
+    <string name="tipAmount">$0.00</string>
+    <string name="totalAmount">$0.00</string>
+    <string name="labelBillAmount">"Bill Amount: "</string>
+    <string name="labelPercent">"Percent: "</string>
+    <string name="labelTip">"Tip: "</string>
+    <string name="labelTotalAmount">"Total: "</string>
+    <string name="decrease">"  -  "</string>
+    <string name="increase">" +   "</string>
+    <string name="hints">$0.00</string>
+</resources>
